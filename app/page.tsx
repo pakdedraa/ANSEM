@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import PriceChart from '@/components/PriceChart';
+import CreatorFeeTracker from '@/components/CreatorFeeTracker';
 import NarrativeSection from '@/components/NarrativeSection';
 import ArtGallery from '@/components/ArtGallery';
 import ContractTerminal from '@/components/ContractTerminal';
@@ -12,6 +13,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <PriceChart />
+      <CreatorFeeTracker />
       <NarrativeSection />
       <ArtGallery />
       <ContractTerminal />

@@ -184,6 +184,18 @@ export default function ContractTerminal() {
               </a>
 
               <a
+                href="https://usepaid.app/token/SPqTn8KkooByR41x3SsaNxGxXDqPFFRXR2Kkt8TJhSK"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => playTactileClick('click')}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-300 transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>UsePaid Fees</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+
+              <a
                 href={RAYDIUM_URL}
                 target="_blank"
                 rel="noopener noreferrer"

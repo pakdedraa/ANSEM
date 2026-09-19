@@ -11,11 +11,11 @@ export async function GET() {
         'Accept': 'application/json',
         'User-Agent': 'Mozilla/5.0 (compatible; AnsemFatherOfDog/1.0)',
       },
-      next: { revalidate: 15 },
+      signal: AbortSignal.timeout(3500),
     });
 
     if (!res.ok) {
-      return NextResponse.json({ error: 'Failed to fetch Dexscreener data' }, { status: res.status });
+      return NextResponse.json({ ca: CA, pair: null, timestamp: Date.now() });
     }
 
     const data = await res.json();
@@ -40,8 +40,7 @@ export async function GET() {
       } : null,
       timestamp: Date.now(),
     });
-  } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : 'Unknown error';
-    return NextResponse.json({ error: message }, { status: 500 });
+  } catch {
+    return NextResponse.json({ ca: CA, pair: null, timestamp: Date.now() });
   }
 }

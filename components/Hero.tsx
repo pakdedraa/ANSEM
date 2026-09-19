@@ -21,6 +21,7 @@ export default function Hero() {
   const [copied, setCopied] = useState(false);
   const [stats, setStats] = useState<TokenStats | null>(null);
   const [loadingStats, setLoadingStats] = useState(true);
+  const [creatorFeePaid, setCreatorFeePaid] = useState<string>('$15,679.50');
 
   useEffect(() => {
     let active = true;
@@ -43,6 +44,15 @@ export default function Hero() {
         .catch(() => {
           if (active) setLoadingStats(false);
         });
+
+      fetch('/api/creator-fee')
+        .then((res) => (res.ok ? res.json() : null))
+        .then((data) => {
+          if (active && data?.formattedTotalUsd) {
+            setCreatorFeePaid(data.formattedTotalUsd);
+          }
+        })
+        .catch(() => {});
     };
 
     load();
@@ -228,7 +238,7 @@ export default function Hero() {
 
       {/* Real-time Ticker Strip */}
       <div className="relative max-w-7xl mx-auto w-full z-10 pt-6 border-t border-white/10">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 text-mono">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 text-mono">
           
           {/* Price */}
           <div className="p-3 sm:p-4 rounded-xl border border-white/10 bg-neutral-950/60 backdrop-blur-sm">
@@ -299,6 +309,27 @@ export default function Hero() {
               )}
             </div>
           </div>
+
+          {/* Creator Fee Paid to Ansem */}
+          <a
+            href="#creator-fees"
+            onClick={() => playTactileClick('click')}
+            className="p-3 sm:p-4 rounded-xl border border-emerald-500/30 bg-emerald-950/20 hover:bg-emerald-950/40 backdrop-blur-sm transition-all group col-span-2 sm:col-span-1"
+          >
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-400 font-medium">
+                Fee to Ansem
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            </div>
+            <div className="text-lg sm:text-xl font-bold font-mono text-white flex items-center gap-1">
+              <span>{creatorFeePaid}</span>
+            </div>
+            <span className="text-[10px] font-mono text-neutral-400 group-hover:text-emerald-300 transition-colors flex items-center gap-1 mt-0.5">
+              <span>UsePaid Protocol</span>
+              <ArrowDown className="w-2.5 h-2.5 -rotate-45" />
+            </span>
+          </a>
 
         </div>
       </div>

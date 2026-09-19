@@ -97,6 +97,15 @@ export default function Navbar() {
               Live Chart
             </a>
             <a
+              id="nav-link-creator-fees"
+              href="#creator-fees"
+              className="hover:text-white transition-colors py-1 flex items-center gap-1.5 text-emerald-400 font-semibold"
+              onClick={() => playTactileClick('click')}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              Creator Fees
+            </a>
+            <a
               id="nav-link-lore"
               href="#lore"
               className="hover:text-white transition-colors py-1"
